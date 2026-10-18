@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://uncannily-npc"]
+
+[ext_resource type="Script" path="res://systems/npc.gd" id="1_npc"]
+
+[sub_resource type="CapsuleShape3D" id="1"]
+radius = 0.4
+height = 1.7
+
+[sub_resource type="SphereShape3D" id="2"]
+radius = 3.5
+
+[sub_resource type="CapsuleMesh" id="3"]
+radius = 0.4
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="4"]
+albedo_color = Color(0.88, 0.86, 0.84, 1)
+subsurface_scattering = 0.5
+
+[node name="NPC" type="CharacterBody3D" unique_id=151000001]
+script = ExtResource("1_npc")
+mass = 1.0
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=151000002]
+shape = SubResource("1")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=151000003]
+mesh = SubResource("3")
+material_override = SubResource("4")
+
+[node name="Model" type="Node3D" parent="." unique_id=151000006]
+
+[node name="Talk" type="Area3D" parent="." unique_id=151000004]
+collision_layer = 0
+collision_mask = 1
+monitoring = true
+
+[node name="TalkCol" type="CollisionShape3D" parent="Talk" unique_id=151000005]
+shape = SubResource("2")

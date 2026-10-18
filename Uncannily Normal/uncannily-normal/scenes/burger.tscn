@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://doxbgf6nbxf7x"]
+
+[ext_resource type="PackedScene" uid="uid://qgk6kkyebyeg" path="res://Assets/BurgerPiz/BurgerPiz/Models/BurgerPiz.glb" id="1_nkn5y"]
+
+[node name="BurgerPiz2" unique_id=1462691141 instance=ExtResource("1_nkn5y")]
+
+[node name="Building" parent="." index="23" unique_id=1142226520]
+transform = Transform3D(4.046734, 0, 0, 0, 4.046734, 0, 0, 0, 4.046734, -53.54544, 3.9312503, -18.62746)
+
+[node name="Building_02_004" parent="." index="33" unique_id=116669635]
+transform = Transform3D(0, 0, 0.7866496, 0, 0.7866496, 0, 0.7866496, 0, 0, -77.09297, 2.268959, 93.89291)
+
+[node name="Building_02_005" parent="." index="34" unique_id=2119325670]
+transform = Transform3D(0, 0, 0.7866496, 0, 0.7866496, 0, 0.7866496, 0, 0, -77.11743, 2.268959, 116.6986)
+
+[node name="BurgerPiz_L" parent="." index="36" unique_id=2104472679]
+visible = false
+
+[node name="BurgerPiz_L_001" parent="." index="37" unique_id=92275210]
+visible = false
+
+[node name="Door_F" parent="." index="101" unique_id=1628676526]
+visible = false
+
+[node name="Door_F_001" parent="." index="102" unique_id=1603735237]
+visible = false
+
+[node name="Door_Fr" parent="." index="103" unique_id=1982901822]
+transform = Transform3D(-0.05322939, 0, 1.5268352, 0, 1.5273323, 0, -2.085503, 0, -0.038970213, -1.112234, 1.2639415, -1.4343266)
+
+[node name="Tree_037" parent="." index="430" unique_id=247054557]
+transform = Transform3D(-0.5659866, 0, 0.9472713, 0, 1.1034781, 0, -0.9472713, 0, -0.5659866, 168.41345, -0.7098688, 74.77937)
+
+[node name="Tree_01_062" parent="." index="499" unique_id=1092912614]
+transform = Transform3D(1.0531462, 0, 0.32946444, 0, 1.1034781, 0, -0.32946444, 0, 1.0531462, 163.5024, -0.23548734, 74.7382)

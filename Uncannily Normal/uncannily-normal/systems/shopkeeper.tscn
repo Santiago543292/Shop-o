@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://fmrky6cxgn4d"]
+
+[ext_resource type="Script" uid="uid://bnk1b4o0kudit" path="res://systems/shopkeeper.gd" id="1_sk"]
+[ext_resource type="PackedScene" uid="uid://cd5or1kbg5fib" path="res://Assets/Characters_psx_1.1/Characters_psx_01/Models/Rig/Male/Character_06.fbx" id="2_88oyp"]
+
+[sub_resource type="CapsuleShape3D" id="1"]
+radius = 0.4
+height = 1.8207031
+
+[sub_resource type="StandardMaterial3D" id="4"]
+albedo_color = Color(0.28, 0.32, 0.42, 1)
+
+[sub_resource type="CapsuleMesh" id="3"]
+radius = 0.4
+height = 1.7
+
+[sub_resource type="SphereShape3D" id="2"]
+radius = 3.5
+
+[node name="Shopkeeper" type="CharacterBody3D" unique_id=151000101]
+script = ExtResource("1_sk")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=151000102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06035155, 0)
+shape = SubResource("1")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=151000103]
+visible = false
+material_override = SubResource("4")
+mesh = SubResource("3")
+
+[node name="Model" type="Node3D" parent="." unique_id=151000106]
+transform = Transform3D(1, 0, 0, 0, 3.908314, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Talk" type="Area3D" parent="." unique_id=151000104]
+collision_layer = 0
+
+[node name="TalkCol" type="CollisionShape3D" parent="Talk" unique_id=151000105]
+shape = SubResource("2")
+
+[node name="Character_06" parent="." unique_id=1664144124 instance=ExtResource("2_88oyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024462253, -0.7132205, -0.0067777038)

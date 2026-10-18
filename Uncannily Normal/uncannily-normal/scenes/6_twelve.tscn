@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d3q4evn3lama"]
+
+[ext_resource type="PackedScene" uid="uid://cvr3ocnv5ty36" path="res://Assets/6twelve/6twelve/Models/6twelve.fbx" id="1_3oqt3"]
+
+[node name="6twelve" unique_id=1895584651 instance=ExtResource("1_3oqt3")]
+
+[node name="Door_01" parent="." index="6" unique_id=639305472]
+visible = false
+
+[node name="Door_03" parent="." index="71" unique_id=1495388620]
+visible = false
+
+[node name="Door_02" parent="." index="100" unique_id=978807647]
+visible = false
+
+[node name="Door" parent="." index="129" unique_id=645871564]
+visible = false

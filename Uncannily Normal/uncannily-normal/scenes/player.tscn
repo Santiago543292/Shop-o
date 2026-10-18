@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c6u3rr1guvuxt"]
+
+[ext_resource type="Script" uid="uid://bsp0wtd6crbsc" path="res://addons/godoplayer/Nodes/player_controller_3d.gd" id="1_4flbx"]
+[ext_resource type="Script" path="res://ui/hud.gd" id="4_hud"]
+[ext_resource type="Script" path="res://systems/inventory.gd" id="5_inv"]
+[ext_resource type="Script" path="res://player/player_interact.gd" id="6_interact"]
+[ext_resource type="Script" path="res://systems/footsteps.gd" id="7_steps"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vcv0m"]
+
+[node name="Player" type="Node3D" unique_id=32581713]
+
+[node name="Interact" type="Node" parent="." unique_id=1296312393]
+script = ExtResource("6_interact")
+
+[node name="Footsteps" type="Node" parent="."]
+script = ExtResource("7_steps")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=942514711]
+script = ExtResource("4_hud")
+
+[node name="Inventory" type="CanvasLayer" parent="."]
+script = ExtResource("5_inv")
+
+[node name="PlayerController3D" type="CharacterBody3D" parent="." unique_id=324459828]
+script = ExtResource("1_4flbx")
+metadata/_custom_type_script = "uid://bsp0wtd6crbsc"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerController3D" unique_id=612082158]
+shape = SubResource("CapsuleShape3D_vcv0m")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerController3D" unique_id=509991639]
+
+[node name="Camera3D" type="Camera3D" parent="PlayerController3D/SpringArm3D" unique_id=982188491]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44588822, 0)

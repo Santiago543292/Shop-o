@@ -1,0 +1,540 @@
+[gd_scene load_steps=49 format=3]
+
+[ext_resource type="Script" path="res://systems/hunger.gd" id="e1"]
+[ext_resource type="Script" path="res://systems/save_system.gd" id="e2"]
+[ext_resource type="Script" path="res://systems/light_hum.gd" id="e3"]
+[ext_resource type="Script" path="res://systems/employee.gd" id="e4"]
+[ext_resource type="Script" path="res://systems/trap_item.gd" id="e5"]
+[ext_resource type="Script" path="res://systems/shelf_item.gd" id="e6"]
+[ext_resource type="Script" path="res://systems/shop_controller.gd" id="e7"]
+[ext_resource type="Script" path="res://systems/door.gd" id="e8"]
+[ext_resource type="Script" path="res://systems/escape.gd" id="e9"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="e10"]
+
+[sub_resource type="StandardMaterial3D" id="M1"]
+albedo_color = Color(0.3, 0.29, 0.27, 1)
+roughness = 0.95
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="M2"]
+albedo_color = Color(0.55, 0.53, 0.48, 1)
+roughness = 0.95
+metallic = 0.0
+emission_enabled = true
+emission = Color(0.4, 0.39, 0.36, 1)
+emission_energy = 0.15
+
+[sub_resource type="StandardMaterial3D" id="M3"]
+albedo_color = Color(0.45, 0.44, 0.42, 1)
+roughness = 0.95
+metallic = 0.05
+
+[sub_resource type="StandardMaterial3D" id="M4"]
+albedo_color = Color(0.38, 0.27, 0.2, 1)
+roughness = 0.8
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="M5"]
+albedo_color = Color(0.26, 0.28, 0.3, 1)
+roughness = 0.7
+metallic = 0.2
+emission_enabled = true
+emission = Color(0.26, 0.28, 0.3, 1)
+emission_energy = 0.22
+
+[sub_resource type="StandardMaterial3D" id="M6"]
+albedo_color = Color(0.8, 0.78, 0.72, 1)
+roughness = 0.6
+metallic = 0.0
+emission_enabled = true
+emission = Color(0.08, 0.08, 0.06, 1)
+emission_energy = 0.25
+
+[sub_resource type="StandardMaterial3D" id="M7"]
+albedo_color = Color(0.4, 0.11, 0.11, 1)
+roughness = 0.7
+metallic = 0.0
+emission_enabled = true
+emission = Color(0.4, 0.1, 0.1, 1)
+emission_energy = 0.55
+
+[sub_resource type="StandardMaterial3D" id="M8"]
+albedo_color = Color(0.45, 0.33, 0.2, 1)
+roughness = 0.9
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="M9"]
+albedo_color = Color(0.22, 0.2, 0.19, 1)
+roughness = 0.75
+metallic = 0.15
+emission_enabled = true
+emission = Color(0.22, 0.2, 0.19, 1)
+emission_energy = 0.25
+
+[sub_resource type="StandardMaterial3D" id="M10"]
+albedo_color = Color(0.55, 0.53, 0.48, 1)
+roughness = 0.95
+metallic = 0.0
+
+[sub_resource type="Environment" id="env11"]
+background_mode = 1
+background_color = Color(0.01, 0.012, 0.02, 1)
+ambient_light_color = Color(0.08, 0.10, 0.15, 1)
+ambient_light_energy = 0.65
+fog_enabled = true
+fog_density = 0.010
+fog_light_color = Color(0.08, 0.10, 0.15, 1)
+fog_aerial_depth = 0.85
+tonemap_mode = 2
+tonemap_white_point = 4.0
+
+[sub_resource type="CapsuleMesh" id="emesh12"]
+radius = 0.32
+height = 1.7
+radial_segments = 10
+rings = 6
+material = SubResource("M10")
+
+[sub_resource type="CapsuleShape3D" id="esh13"]
+radius = 0.32
+height = 1.7
+
+[sub_resource type="BoxMesh" id="mesh14"]
+size = Vector3(22.0, 0.3, 18.0)
+material = SubResource("M1")
+
+[sub_resource type="BoxShape3D" id="sh15"]
+size = Vector3(22.0, 0.3, 18.0)
+
+[sub_resource type="BoxMesh" id="mesh16"]
+size = Vector3(22.0, 0.3, 18.0)
+material = SubResource("M3")
+
+[sub_resource type="BoxMesh" id="mesh17"]
+size = Vector3(9.2, 3.4, 0.3)
+material = SubResource("M2")
+
+[sub_resource type="BoxShape3D" id="sh18"]
+size = Vector3(9.2, 3.4, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh19"]
+size = Vector3(0.3, 3.4, 18.0)
+material = SubResource("M2")
+
+[sub_resource type="BoxShape3D" id="sh20"]
+size = Vector3(0.3, 3.4, 18.0)
+
+[sub_resource type="BoxMesh" id="mesh21"]
+size = Vector3(3.6, 1.0, 0.3)
+material = SubResource("M2")
+
+[sub_resource type="BoxShape3D" id="sh22"]
+size = Vector3(3.6, 1.0, 0.3)
+
+[sub_resource type="BoxShape3D" id="sh23"]
+size = Vector3(3.6, 2.4, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh24"]
+size = Vector3(3.6, 2.4, 0.3)
+material = SubResource("M9")
+
+[sub_resource type="BoxMesh" id="mesh25"]
+size = Vector3(0.12, 2.0, 0.7)
+material = SubResource("M4")
+
+[sub_resource type="BoxShape3D" id="sh26"]
+size = Vector3(0.12, 2.0, 0.7)
+
+[sub_resource type="BoxMesh" id="mesh27"]
+size = Vector3(7.0, 0.08, 0.7)
+material = SubResource("M4")
+
+[sub_resource type="BoxShape3D" id="sh28"]
+size = Vector3(7.0, 0.08, 0.7)
+
+[sub_resource type="BoxMesh" id="mesh29"]
+size = Vector3(8.0, 1.1, 0.9)
+material = SubResource("M5")
+
+[sub_resource type="BoxShape3D" id="sh30"]
+size = Vector3(8.0, 1.1, 0.9)
+
+[sub_resource type="BoxMesh" id="mesh31"]
+size = Vector3(8.2, 0.08, 1.0)
+material = SubResource("M5")
+
+[sub_resource type="BoxShape3D" id="sh32"]
+size = Vector3(8.2, 0.08, 1.0)
+
+[sub_resource type="BoxMesh" id="mesh33"]
+size = Vector3(0.9, 0.5, 0.9)
+material = SubResource("M8")
+
+[sub_resource type="BoxShape3D" id="sh34"]
+size = Vector3(0.9, 0.5, 0.9)
+
+[sub_resource type="BoxShape3D" id="sh35"]
+size = Vector3(0.34, 0.42, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh36"]
+size = Vector3(0.34, 0.42, 0.3)
+material = SubResource("M6")
+
+[sub_resource type="BoxShape3D" id="sh37"]
+size = Vector3(0.36, 0.42, 0.3)
+
+[sub_resource type="BoxMesh" id="mesh38"]
+size = Vector3(0.36, 0.42, 0.3)
+material = SubResource("M7")
+
+[node name="Map2" type="Node3D"]
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, -0.15, 0)
+[node name="FloorCol" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("sh15")
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("mesh14")
+[node name="Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 3.4, 0)
+[node name="CeilingCol" type="CollisionShape3D" parent="Ceiling"]
+shape = SubResource("sh15")
+[node name="CeilingMesh" type="MeshInstance3D" parent="Ceiling"]
+mesh = SubResource("mesh16")
+[node name="WallN_L" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -4.6, 1.7, -9.0)
+[node name="WallN_LCol" type="CollisionShape3D" parent="WallN_L"]
+shape = SubResource("sh18")
+[node name="WallN_LMesh" type="MeshInstance3D" parent="WallN_L"]
+mesh = SubResource("mesh17")
+[node name="WallN_R" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 4.6, 1.7, -9.0)
+[node name="WallN_RCol" type="CollisionShape3D" parent="WallN_R"]
+shape = SubResource("sh18")
+[node name="WallN_RMesh" type="MeshInstance3D" parent="WallN_R"]
+mesh = SubResource("mesh17")
+[node name="WallE" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 11.0, 1.7, 0)
+[node name="WallECol" type="CollisionShape3D" parent="WallE"]
+shape = SubResource("sh20")
+[node name="WallEMesh" type="MeshInstance3D" parent="WallE"]
+mesh = SubResource("mesh19")
+[node name="WallW" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -11.0, 1.7, 0)
+[node name="WallWCol" type="CollisionShape3D" parent="WallW"]
+shape = SubResource("sh20")
+[node name="WallWMesh" type="MeshInstance3D" parent="WallW"]
+mesh = SubResource("mesh19")
+[node name="WallS_L" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -4.6, 1.7, 9.0)
+[node name="WallS_LCol" type="CollisionShape3D" parent="WallS_L"]
+shape = SubResource("sh18")
+[node name="WallS_LMesh" type="MeshInstance3D" parent="WallS_L"]
+mesh = SubResource("mesh17")
+[node name="WallS_R" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 4.6, 1.7, 9.0)
+[node name="WallS_RCol" type="CollisionShape3D" parent="WallS_R"]
+shape = SubResource("sh18")
+[node name="WallS_RMesh" type="MeshInstance3D" parent="WallS_R"]
+mesh = SubResource("mesh17")
+[node name="WallS_Top" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 2.9, 9.0)
+[node name="WallS_TopCol" type="CollisionShape3D" parent="WallS_Top"]
+shape = SubResource("sh22")
+[node name="WallS_TopMesh" type="MeshInstance3D" parent="WallS_Top"]
+mesh = SubResource("mesh21")
+[node name="ExitDoor" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 1.2, -8.85)
+script = ExtResource("e8")
+[node name="ExitDoorCol" type="CollisionShape3D" parent="ExitDoor"]
+shape = SubResource("sh23")
+[node name="ExitDoorMesh" type="MeshInstance3D" parent="ExitDoor"]
+material_override = SubResource("M9")
+mesh = SubResource("mesh24")
+[node name="ShelfUpright_0_-1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -10.0, 1.0, -4.0)
+[node name="ShelfUpright_0_-1Col" type="CollisionShape3D" parent="ShelfUpright_0_-1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_0_-1Mesh" type="MeshInstance3D" parent="ShelfUpright_0_-1"]
+mesh = SubResource("mesh25")
+[node name="ShelfUpright_0_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -3.0, 1.0, -4.0)
+[node name="ShelfUpright_0_1Col" type="CollisionShape3D" parent="ShelfUpright_0_1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_0_1Mesh" type="MeshInstance3D" parent="ShelfUpright_0_1"]
+mesh = SubResource("mesh25")
+[node name="ShelfBoard_0_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -6.5, 0.55, -4.0)
+[node name="ShelfBoard_0_0Col" type="CollisionShape3D" parent="ShelfBoard_0_0"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_0_0Mesh" type="MeshInstance3D" parent="ShelfBoard_0_0"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_0_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -6.5, 1.25, -4.0)
+[node name="ShelfBoard_0_1Col" type="CollisionShape3D" parent="ShelfBoard_0_1"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_0_1Mesh" type="MeshInstance3D" parent="ShelfBoard_0_1"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_0_2" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -6.5, 1.95, -4.0)
+[node name="ShelfBoard_0_2Col" type="CollisionShape3D" parent="ShelfBoard_0_2"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_0_2Mesh" type="MeshInstance3D" parent="ShelfBoard_0_2"]
+mesh = SubResource("mesh27")
+[node name="ShelfUpright_1_-1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 3.0, 1.0, -4.0)
+[node name="ShelfUpright_1_-1Col" type="CollisionShape3D" parent="ShelfUpright_1_-1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_1_-1Mesh" type="MeshInstance3D" parent="ShelfUpright_1_-1"]
+mesh = SubResource("mesh25")
+[node name="ShelfUpright_1_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 10.0, 1.0, -4.0)
+[node name="ShelfUpright_1_1Col" type="CollisionShape3D" parent="ShelfUpright_1_1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_1_1Mesh" type="MeshInstance3D" parent="ShelfUpright_1_1"]
+mesh = SubResource("mesh25")
+[node name="ShelfBoard_1_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 6.5, 0.55, -4.0)
+[node name="ShelfBoard_1_0Col" type="CollisionShape3D" parent="ShelfBoard_1_0"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_1_0Mesh" type="MeshInstance3D" parent="ShelfBoard_1_0"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_1_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 6.5, 1.25, -4.0)
+[node name="ShelfBoard_1_1Col" type="CollisionShape3D" parent="ShelfBoard_1_1"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_1_1Mesh" type="MeshInstance3D" parent="ShelfBoard_1_1"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_1_2" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 6.5, 1.95, -4.0)
+[node name="ShelfBoard_1_2Col" type="CollisionShape3D" parent="ShelfBoard_1_2"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_1_2Mesh" type="MeshInstance3D" parent="ShelfBoard_1_2"]
+mesh = SubResource("mesh27")
+[node name="ShelfUpright_2_-1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -10.0, 1.0, 1.5)
+[node name="ShelfUpright_2_-1Col" type="CollisionShape3D" parent="ShelfUpright_2_-1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_2_-1Mesh" type="MeshInstance3D" parent="ShelfUpright_2_-1"]
+mesh = SubResource("mesh25")
+[node name="ShelfUpright_2_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -3.0, 1.0, 1.5)
+[node name="ShelfUpright_2_1Col" type="CollisionShape3D" parent="ShelfUpright_2_1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_2_1Mesh" type="MeshInstance3D" parent="ShelfUpright_2_1"]
+mesh = SubResource("mesh25")
+[node name="ShelfBoard_2_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -6.5, 0.55, 1.5)
+[node name="ShelfBoard_2_0Col" type="CollisionShape3D" parent="ShelfBoard_2_0"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_2_0Mesh" type="MeshInstance3D" parent="ShelfBoard_2_0"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_2_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -6.5, 1.25, 1.5)
+[node name="ShelfBoard_2_1Col" type="CollisionShape3D" parent="ShelfBoard_2_1"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_2_1Mesh" type="MeshInstance3D" parent="ShelfBoard_2_1"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_2_2" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -6.5, 1.95, 1.5)
+[node name="ShelfBoard_2_2Col" type="CollisionShape3D" parent="ShelfBoard_2_2"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_2_2Mesh" type="MeshInstance3D" parent="ShelfBoard_2_2"]
+mesh = SubResource("mesh27")
+[node name="ShelfUpright_3_-1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 3.0, 1.0, 1.5)
+[node name="ShelfUpright_3_-1Col" type="CollisionShape3D" parent="ShelfUpright_3_-1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_3_-1Mesh" type="MeshInstance3D" parent="ShelfUpright_3_-1"]
+mesh = SubResource("mesh25")
+[node name="ShelfUpright_3_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 10.0, 1.0, 1.5)
+[node name="ShelfUpright_3_1Col" type="CollisionShape3D" parent="ShelfUpright_3_1"]
+shape = SubResource("sh26")
+[node name="ShelfUpright_3_1Mesh" type="MeshInstance3D" parent="ShelfUpright_3_1"]
+mesh = SubResource("mesh25")
+[node name="ShelfBoard_3_0" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 6.5, 0.55, 1.5)
+[node name="ShelfBoard_3_0Col" type="CollisionShape3D" parent="ShelfBoard_3_0"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_3_0Mesh" type="MeshInstance3D" parent="ShelfBoard_3_0"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_3_1" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 6.5, 1.25, 1.5)
+[node name="ShelfBoard_3_1Col" type="CollisionShape3D" parent="ShelfBoard_3_1"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_3_1Mesh" type="MeshInstance3D" parent="ShelfBoard_3_1"]
+mesh = SubResource("mesh27")
+[node name="ShelfBoard_3_2" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 6.5, 1.95, 1.5)
+[node name="ShelfBoard_3_2Col" type="CollisionShape3D" parent="ShelfBoard_3_2"]
+shape = SubResource("sh28")
+[node name="ShelfBoard_3_2Mesh" type="MeshInstance3D" parent="ShelfBoard_3_2"]
+mesh = SubResource("mesh27")
+[node name="CounterBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 0.55, -6.6)
+[node name="CounterBodyCol" type="CollisionShape3D" parent="CounterBody"]
+shape = SubResource("sh30")
+[node name="CounterBodyMesh" type="MeshInstance3D" parent="CounterBody"]
+mesh = SubResource("mesh29")
+[node name="CounterTop" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 1.13, -6.6)
+[node name="CounterTopCol" type="CollisionShape3D" parent="CounterTop"]
+shape = SubResource("sh32")
+[node name="CounterTopMesh" type="MeshInstance3D" parent="CounterTop"]
+mesh = SubResource("mesh31")
+[node name="Crate_Veg" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -9.5, 0.25, -6.5)
+[node name="Crate_VegCol" type="CollisionShape3D" parent="Crate_Veg"]
+shape = SubResource("sh34")
+[node name="Crate_VegMesh" type="MeshInstance3D" parent="Crate_Veg"]
+mesh = SubResource("mesh33")
+[node name="Crate_Apple" type="StaticBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 9.5, 0.25, -6.5)
+[node name="Crate_AppleCol" type="CollisionShape3D" parent="Crate_Apple"]
+shape = SubResource("sh34")
+[node name="Crate_AppleMesh" type="MeshInstance3D" parent="Crate_Apple"]
+mesh = SubResource("mesh33")
+[node name="Item_Milk" type="Area3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -8.5, 0.78, -4.0)
+script = ExtResource("e6")
+item_id = "milk"
+item_label = "MILK"
+[node name="Item_MilkCol" type="CollisionShape3D" parent="Item_Milk"]
+shape = SubResource("sh35")
+[node name="Mesh" type="MeshInstance3D" parent="Item_Milk"]
+mesh = SubResource("mesh36")
+[node name="Item_Bread" type="Area3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -4.5, 0.78, -4.0)
+script = ExtResource("e6")
+item_id = "bread"
+item_label = "BREAD"
+[node name="Item_BreadCol" type="CollisionShape3D" parent="Item_Bread"]
+shape = SubResource("sh35")
+[node name="Mesh" type="MeshInstance3D" parent="Item_Bread"]
+mesh = SubResource("mesh36")
+[node name="Item_Pickles" type="Area3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 4.5, 0.78, -4.0)
+script = ExtResource("e6")
+item_id = "pickles"
+item_label = "PICKLES"
+[node name="Item_PicklesCol" type="CollisionShape3D" parent="Item_Pickles"]
+shape = SubResource("sh35")
+[node name="Mesh" type="MeshInstance3D" parent="Item_Pickles"]
+mesh = SubResource("mesh36")
+[node name="Item_Soap" type="Area3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 8.5, 0.78, -4.0)
+script = ExtResource("e6")
+item_id = "soap"
+item_label = "SOAP"
+[node name="Item_SoapCol" type="CollisionShape3D" parent="Item_Soap"]
+shape = SubResource("sh35")
+[node name="Mesh" type="MeshInstance3D" parent="Item_Soap"]
+mesh = SubResource("mesh36")
+[node name="Item_Eggs" type="Area3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -8.5, 1.48, 1.5)
+script = ExtResource("e6")
+item_id = "eggs"
+item_label = "EGGS"
+[node name="Item_EggsCol" type="CollisionShape3D" parent="Item_Eggs"]
+shape = SubResource("sh35")
+[node name="Mesh" type="MeshInstance3D" parent="Item_Eggs"]
+mesh = SubResource("mesh36")
+[node name="Item_Candles" type="Area3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 8.5, 1.48, 1.5)
+script = ExtResource("e6")
+item_id = "candles"
+item_label = "CANDLES"
+[node name="Item_CandlesCol" type="CollisionShape3D" parent="Item_Candles"]
+shape = SubResource("sh35")
+[node name="Mesh" type="MeshInstance3D" parent="Item_Candles"]
+mesh = SubResource("mesh36")
+[node name="Decoy_1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -4.5, 1.48, -4.0)
+mesh = SubResource("mesh36")
+[node name="Decoy_2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 4.5, 1.48, -4.0)
+mesh = SubResource("mesh36")
+[node name="Decoy_3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -8.5, 2.18, -4.0)
+mesh = SubResource("mesh36")
+[node name="Decoy_4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -4.5, 2.18, -4.0)
+mesh = SubResource("mesh36")
+[node name="Decoy_5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 4.5, 2.18, -4.0)
+mesh = SubResource("mesh36")
+[node name="Decoy_6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 8.5, 2.18, -4.0)
+mesh = SubResource("mesh36")
+[node name="Decoy_7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -4.5, 0.78, 1.5)
+mesh = SubResource("mesh36")
+[node name="Decoy_8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 4.5, 0.78, 1.5)
+mesh = SubResource("mesh36")
+[node name="TrapItem" type="Area3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 1.3199999999999998, -5.699999999999999)
+script = ExtResource("e5")
+[node name="TrapItemCol" type="CollisionShape3D" parent="TrapItem"]
+shape = SubResource("sh37")
+[node name="Mesh" type="MeshInstance3D" parent="TrapItem"]
+mesh = SubResource("mesh38")
+[node name="Employee" type="CharacterBody3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 0, -4.0)
+script = ExtResource("e4")
+[node name="EmpCol" type="CollisionShape3D" parent="Employee"]
+shape = SubResource("esh13")
+[node name="EmpMesh" type="MeshInstance3D" parent="Employee"]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 0.95, 0)
+mesh = SubResource("emesh12")
+[node name="ShopController" type="Node3D" parent="."]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 1.3299999999999998, -6.6)
+script = ExtResource("e7")
+contract_position = Vector3(0, 0.2, 0)
+[node name="Escape" type="Node3D" parent="."]
+script = ExtResource("e9")
+[node name="Player" parent="." instance=ExtResource("e10")]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0, 0.2, 6.0)
+[node name="HungerNode" type="Node" parent="."]
+script = ExtResource("e1")
+[node name="SaveSystem" type="Node" parent="."]
+script = ExtResource("e2")
+[node name="Lights" type="Node3D" parent="."]
+script = ExtResource("e3")
+[node name="ShopLight_0" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -8.8, 3.05, 0)
+light_color = Color(0.92, 0.94, 0.88, 1)
+light_energy = 4.5
+omni_range = 18.0
+omni_attenuation = 1.2
+[node name="ShopLight_1" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, -4.3999999999999995, 3.05, 0)
+light_color = Color(0.92, 0.94, 0.88, 1)
+light_energy = 4.5
+omni_range = 18.0
+omni_attenuation = 1.2
+[node name="ShopLight_2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 0.0, 3.05, 0)
+light_color = Color(0.92, 0.94, 0.88, 1)
+light_energy = 0.0
+omni_range = 18.0
+omni_attenuation = 1.2
+[node name="ShopLight_3" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 4.400000000000002, 3.05, 0)
+light_color = Color(0.92, 0.94, 0.88, 1)
+light_energy = 4.5
+omni_range = 18.0
+omni_attenuation = 1.2
+[node name="ShopLight_4" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1.0, 0, 0.0, 0, 1, 0, -0.0, 0, 1.0, 8.8, 3.05, 0)
+light_color = Color(0.92, 0.94, 0.88, 1)
+light_energy = 4.5
+omni_range = 18.0
+omni_attenuation = 1.2
+[node name="Moon" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8645072, -0.3562327, 0.35457805, 0, 0.7054588, 0.7087509, -0.50262046, -0.61272025, 0.60987425, 0, 8, 0)
+light_color = Color(0.55, 0.62, 0.78, 1)
+light_energy = 0.55
+shadow_enabled = false
+[node name="NightEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env11")

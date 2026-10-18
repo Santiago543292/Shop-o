@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://m0av1tlrst3g"]
+
+[ext_resource type="Script" uid="uid://brh7ntbblmfr0" path="res://systems/trash_can.gd" id="1_trash"]
+
+[sub_resource type="BoxShape3D" id="box1"]
+size = Vector3(2.5, 2, 2.5)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.6, 1, 0.6)
+
+[node name="TrashCan" type="Area3D" unique_id=1031654292]
+collision_layer = 0
+script = ExtResource("1_trash")
+
+[node name="TrashCan#Col" type="CollisionShape3D" parent="." unique_id=430628368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("box1")
+
+[node name="TrashCan#Mesh" type="MeshInstance3D" parent="." unique_id=1033194217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("mesh1")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://npc/npc.gd" id="1_npc"]
+[ext_resource type="PackedScene" path="res://Assets/Characters_psx_1.1/Characters_psx_01/Models/No-Rig/Female/Character_29_Female.fbx" id="2_char"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_npc"]
+radius = 0.30
+height = 1.8
+
+[node name="NPC" type="Node3D"]
+
+[node name="NpcBody" type="CharacterBody3D" parent="."]
+script = ExtResource("1_npc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NpcBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_npc")
+
+[node name="Model" type="Node3D" parent="NpcBody"]
+
+[node name="Character" parent="NpcBody/Model" instance=ExtResource("2_char")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NpcBody"]

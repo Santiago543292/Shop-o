@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://uncannily-locked-door"]
+
+[ext_resource type="Script" path="res://systems/locked_door.gd" id="1_ld"]
+
+[sub_resource type="BoxShape3D" id="1"]
+size = Vector3(2.0, 2.2, 0.5)
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(2.0, 2.2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="3"]
+albedo_color = Color(0.14, 0.14, 0.14, 1)
+metallic = 0.35
+roughness = 0.7
+
+[sub_resource type="SphereShape3D" id="4"]
+radius = 1.9
+
+[node name="LockedDoor" type="StaticBody3D" unique_id=151000201]
+script = ExtResource("1_ld")
+
+[node name="Col" type="CollisionShape3D" parent="." unique_id=151000202]
+shape = SubResource("1")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=151000203]
+mesh = SubResource("2")
+material_override = SubResource("3")
+
+[node name="Trigger" type="Area3D" parent="." unique_id=151000204]
+collision_layer = 0
+collision_mask = 1
+monitoring = true
+
+[node name="TriggerCol" type="CollisionShape3D" parent="Trigger" unique_id=151000205]
+shape = SubResource("4")

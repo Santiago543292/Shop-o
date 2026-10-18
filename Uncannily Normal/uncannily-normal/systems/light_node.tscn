@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c4cklwm65cmfp"]
+
+[node name="StreetLight" type="OmniLight3D" unique_id=1548090254]
+light_color = Color(0.75, 0.82, 0.95, 1)
+light_energy = 4.5
+distance_fade_enabled = true
+distance_fade_begin = 1000.0
+distance_fade_shadow = 100.0
+distance_fade_length = 100.0
+omni_range = 11.0
+omni_attenuation = 1.1
